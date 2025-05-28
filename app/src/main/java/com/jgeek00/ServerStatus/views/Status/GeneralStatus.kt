@@ -65,7 +65,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GeneralStatus(
-    //viewCpuDetails: () -> Unit,
+    viewCpuDetails: () -> Unit,
     viewMemoryDetails: () -> Unit,
     viewStorageDetails: () -> Unit,
     viewNetworkDetails: () -> Unit,
@@ -207,13 +207,13 @@ fun GeneralStatus(
                         .padding(bottom = 8.dp)
                         .windowInsetsPadding(displayCutout)
                 ) {
-                    /*values.value.last().cpu?.let {
+                    values.value.last().cpu?.let {
                         CpuCard(it, viewCpuDetails)
                         HorizontalDivider(
                             color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
                             modifier = Modifier.padding(horizontal = 16.dp)
                         )
-                    }*/
+                    }
                     values.value.last().memory?.let {
                         MemoryCard(it, viewMemoryDetails)
                         HorizontalDivider(

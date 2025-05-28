@@ -10,31 +10,31 @@ fun transformStatusJSON(input: JsonElement): JsonElement {
     if (input.isJsonObject) {
         val jsonObject = input.asJsonObject
 
-        /*val cpu = jsonObject.getAsJsonObject("cpu")
+        val cpu = jsonObject.getAsJsonObject("cpu")
         if (cpu != null) {
             val coresData = JsonArray()
 
-            val temperatures = cpu.getAsJsonObject("temperatures")
+            //val temperatures = cpu.getAsJsonObject("temperatures")
             val frequencies = cpu.getAsJsonObject("frequencies")
 
             frequencies?.entrySet()?.forEach { (index, values) ->
                 val coreData = JsonObject()
-                val coreIndex = index.replace("cpu", "")
+                /*val coreIndex = index.replace("cpu", "")
                 val coreTemperature = temperatures?.getAsJsonArray("Core $coreIndex")
                 if (coreTemperature != null) {
                     coreData.add("temperatures", coreTemperature)
-                }
+                }*/
                 coreData.add("frequencies", JsonObject().apply {
                     values.asJsonObject.entrySet().forEach { (k, v) ->
                         if (k.toString() != "base") {
-                        addProperty(k, v.asInt) } else { addProperty(k, 0)}
+                        addProperty(k, v.asInt) } //else { addProperty(k, 0)}
                     }
                 })
                 coresData.add(coreData)
             }
 
             cpu.remove("frequencies")
-            cpu.remove("temperatures")
+            //cpu.remove("temperatures")
 
             output.add("cpu", JsonObject().apply {
                 cpu.entrySet().forEach { (key, value) ->
@@ -42,7 +42,7 @@ fun transformStatusJSON(input: JsonElement): JsonElement {
                 }
                 add("cpuCores", coresData)
             })
-        }*/
+        }
 
         val memory = jsonObject.getAsJsonObject("memory")
         output.add("memory", JsonObject().apply {
