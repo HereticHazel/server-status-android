@@ -10,7 +10,7 @@ fun transformStatusJSON(input: JsonElement): JsonElement {
     if (input.isJsonObject) {
         val jsonObject = input.asJsonObject
 
-        val cpu = jsonObject.getAsJsonObject("cpu")
+        /*val cpu = jsonObject.getAsJsonObject("cpu")
         if (cpu != null) {
             val coresData = JsonArray()
 
@@ -26,7 +26,8 @@ fun transformStatusJSON(input: JsonElement): JsonElement {
                 }
                 coreData.add("frequencies", JsonObject().apply {
                     values.asJsonObject.entrySet().forEach { (k, v) ->
-                        addProperty(k, v.asInt)
+                        if (k.toString() != "base") {
+                        addProperty(k, v.asInt) } else { addProperty(k, 0)}
                     }
                 })
                 coresData.add(coreData)
@@ -41,7 +42,7 @@ fun transformStatusJSON(input: JsonElement): JsonElement {
                 }
                 add("cpuCores", coresData)
             })
-        }
+        }*/
 
         val memory = jsonObject.getAsJsonObject("memory")
         output.add("memory", JsonObject().apply {
